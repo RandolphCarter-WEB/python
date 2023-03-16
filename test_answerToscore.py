@@ -9,61 +9,76 @@
 
 import os.path
 
-def ScoreResult(studentox_dic, answerscore_list, key, q_num):
-    resultscore = 0
+def CheckTxtfile_Answer(answer_dic):
+    if os.path.isfile("Answer.txt"):
+        print("Answer List is exist.")
+ 
+    else:
+        print("Answer List is not exist.")
+        print("You need to make answer data.")
+
+        Make_AnswerTxt()
+                
+    print("What kind of class test? (input english)")
+    class_name = input(">> ")
+
+    answer_dic = Find_ClassTestAnswer(class_name)
+
+    return class_name
+
+def CheckTxtfile_Student(studentanswer_dic, class_name):
+    if os.path.isfile("Student.txt"):
+        print("Student List is exist.")
+            
+    else:
+        print("Student List is not exist.")
+        print("You need to make student data.")
+
+        Make_StudentTxt()
+
+    print("Student Name?")
+    student_name = input(">> ")
+
+    studentanswer_dic[student_name] = Find_ClassStudentAnswer(class_name, student_name)
+
+    Print_StudentInfo(studentanswer_dic)
+
+
+def Make_AnswerTxt():
+    class_dic = {}
+    classanswer_dic = {}
+
+    class_name = input("what kind of class? (input [class_name]-year.month) >>")
+    q_num = int(input("how may quetion they have? >>"))
 
     for i in range(q_num):
-        if (list(studentox_dic[key])[i] == 'O'):
-            resultscore += answerscore_list[i]
-    
-    print("finish check student score result")
+        answer = int(input("${i}'s quetion answer >>"))
+        score = int(input("${i}'s quetion score >>"))
 
-    return resultscore
+        classanswer_dic[answer] = score
 
-def Check_StudentScore(studentanswer_dic, studentox_dic, studentscore_dic, answer_list, answerscore_list, q_num):
-    scorelist = []
+    class_dic[class_name] = classanswer_dic
 
-    for key in studentanswer_dic:
-        for i in range(q_num):
-            if (list(studentanswer_dic[key])[i] == answer_list[i]):
-                scorelist[i] = 'O'
-            else:
-                scorelist[i] = 'X'
+    Save_AnswerFile(class_dic)
 
-        studentox_dic[key] = scorelist
-        studentscore_dic[key] = ScoreResult(studentox_dic, answerscore_list, key, q_num)
-    
-    print("finish check student list")
+def Make_StudentTxt():
+    student_dic = {}
+    student_class = {}
+    studentanswer_dic = {}
+
+    student_name = input("Input student name >>")
+    class_name = input("Input class name >>")
+
+    for i in range()
+
+
 
 
 def main():
     studentanswer_dic = {}
-
-    q_num = 0
-    repeat = 1
-
-    while(repeat == 1):
-        if os.path.isfile("Answer.txt"):
-            print("Answer List is exist.")
-            print("What kind of class test? (input english)")
-            class_name = input(">> ")
-
-            answer_list = Find_ClassTestAnswer(class_name)
-
-            if os.path.isfile("Student.txt"):
-                print("Student List is exist.")
-                print("Student Name?")
-                student_name = input(">> ")
-
-                studentanswer_dic[student_name] = Find_ClassStudentAnswer(class_name, student_name)
-
-                Print_StudentInfo(studentanswer_dic)
-            
-            else:
-                print("Student List is not exist.")
-                print("You need to make student data.")
-                
-
-
+    answer_dic = {}
+        
+    class_name = CheckTxtfile_Answer(answer_dic)
+    CheckTxtfile_Student(studentanswer_dic, class_name)
 
         
