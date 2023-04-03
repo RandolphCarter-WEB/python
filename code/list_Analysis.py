@@ -25,7 +25,7 @@ def ListAnaly(list):
     element_min = list.index(MIN_num)
     element_max = list.index(MAX_num, element_min, len(list))
     end_time = time.process_time()
-    
+     
     print("you must buy in {} and sell in {}".format(element_min, element_max))
     print("then you can buy best price {}".format(result))
     

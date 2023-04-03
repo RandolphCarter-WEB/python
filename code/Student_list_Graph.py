@@ -33,6 +33,7 @@ def print_grade(dic_student):
         print("{}'s score >>".format(list(dic_student.keys())[i]), end = " ")
         for i in range(score_chart):
             print("*", end ="")
+        print("\n")
         ##학생의 점수값을 반환하여 반올림 한 값에 따라서 그래프를 그림.
 
 ##main 함수
